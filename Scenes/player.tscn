@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://uh7ciibbfjt4"]
+[gd_scene load_steps=8 format=3 uid="uid://uh7ciibbfjt4"]
 
+[ext_resource type="Script" uid="uid://cgd7w3bw2tqwf" path="res://Scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://bng1iju04415s" path="res://Assets/characters/DinoSprites - vita.png" id="1_v0iea"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_onrkg"]
@@ -35,6 +36,8 @@ animations = [{
 radius = 4.0
 
 [node name="Player" type="CharacterBody2D"]
+z_index = 5
+script = ExtResource("1_cvnsp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -9)
