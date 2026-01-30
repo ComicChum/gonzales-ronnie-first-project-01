@@ -14,3 +14,7 @@ config/name="GonzalesRonnie_FirstProject_01"
 run/main_scene="uid://chq60selaubam"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
