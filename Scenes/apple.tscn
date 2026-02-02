@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://dx3fqy2nieh5m"]
+
+[ext_resource type="Script" uid="uid://kuuij2vo3sni" path="res://Scripts/apple.gd" id="1_ir1en"]
+[ext_resource type="Texture2D" uid="uid://kir2bcpo78ng" path="res://Assets/items/fruit.png" id="1_v3gsn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ir1en"]
+atlas = ExtResource("1_v3gsn")
+region = Rect2(0, 0, 17, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8gwai"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ir1en")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lyte0"]
+radius = 5.0
+
+[node name="GApple" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_ir1en")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_8gwai")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("CircleShape2D_lyte0")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
