@@ -119,11 +119,11 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_v0iea"]
-radius = 4.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6t5aa"]
+size = Vector2(8, 17)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cvnsp"]
-size = Vector2(10, 1.5)
+size = Vector2(10, 0.375)
 
 [node name="Player" type="CharacterBody2D"]
 z_index = 5
@@ -137,11 +137,11 @@ animation = &"idle"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -4)
-shape = SubResource("CircleShape2D_v0iea")
+position = Vector2(0, -8.5)
+shape = SubResource("RectangleShape2D_6t5aa")
 
 [node name="Stomp" type="Area2D" parent="."]
 
 [node name="StompCollision" type="CollisionShape2D" parent="Stomp"]
-position = Vector2(0, 1)
+position = Vector2(0, 0.1875)
 shape = SubResource("RectangleShape2D_cvnsp")

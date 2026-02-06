@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dx3fqy2nieh5m"]
+[gd_scene load_steps=10 format=3 uid="uid://dx3fqy2nieh5m"]
 
 [ext_resource type="Script" uid="uid://kuuij2vo3sni" path="res://Scripts/apple.gd" id="1_ir1en"]
 [ext_resource type="Texture2D" uid="uid://kir2bcpo78ng" path="res://Assets/items/fruit.png" id="1_v3gsn"]
+[ext_resource type="AudioStream" uid="uid://bg6fbb042yaj1" path="res://Assets/sounds/sfx_coin.ogg" id="3_8gwai"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ir1en"]
 atlas = ExtResource("1_v3gsn")
@@ -19,7 +20,105 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lyte0"]
-radius = 5.0
+radius = 4.0
+
+[sub_resource type="Animation" id="Animation_lyte0"]
+resource_name = "Pickup"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PickupSound:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_mxla6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PickupSound:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gssal"]
+_data = {
+&"Pickup": SubResource("Animation_lyte0"),
+&"RESET": SubResource("Animation_mxla6")
+}
 
 [node name="GApple" type="Area2D"]
 collision_mask = 2
@@ -31,5 +130,14 @@ sprite_frames = SubResource("SpriteFrames_8gwai")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2)
 shape = SubResource("CircleShape2D_lyte0")
+
+[node name="PickupSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_8gwai")
+bus = &"SFX"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_gssal")
+}
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

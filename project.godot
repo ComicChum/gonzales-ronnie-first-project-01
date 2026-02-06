@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="GonzalesRonnie_FirstProject_01"
-run/main_scene="uid://chq60selaubam"
+run/main_scene="uid://dfp48rqvxfde6"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Music="*res://Scenes/music.tscn"
 
 [input]
 
